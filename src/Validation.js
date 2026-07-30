@@ -1,10 +1,10 @@
 export class ValidationError {
     carNameError(carName, nameDistance) {
-        if(nameDistance.length === 1){
-            throw new Error('[ERROR] 자동차가 하나이므로 게임을 진행할 수 없습니다!');
-        }
         if(carName === '') {
             throw new Error('[ERROR] 자동차 이름이 없으므로 게임을 진행할 수 없습니다!');
+        }
+        if(nameDistance.length === 1){
+            throw new Error('[ERROR] 자동차가 하나이므로 게임을 진행할 수 없습니다!');
         }
         const nameArr = nameDistance.map(car => car.name);
         const set = new Set(nameArr);
