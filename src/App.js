@@ -1,5 +1,29 @@
+import InputClass from "./InputView";
+import { ParsingClass } from "./Parsing";
+import { RacingClass } from "./RacingGame";
+import { WinnerClass } from "./Winner";
+import { OutputClass } from "./OutputView";
+import { ValidationError } from "./Validation";
+
 class App {
-  async run() {}
+  async run() {
+    const {carName, attemptCount} = await new InputClass().input();
+    
+    const nameDistance = new ParsingClass().parse(carName);
+    
+    const Validation = new ValidationError();
+    Validation.attemptCountError(attemptCount);
+    Validation.carNameError(carName, nameDistance);
+
+    // race() 함수에 RacingClass의 함수들이 다 연계되어 있어서 이것만 호출함
+    const progress = new RacingClass().race(nameDistance, attemptCount);
+
+    const winner = new WinnerClass().win(progress);
+
+    const Output = new OutputClass();
+    Output.output(progress);
+    Output.winnerOutput(winner);
+  }
 }
 
 export default App;
