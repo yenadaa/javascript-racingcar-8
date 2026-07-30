@@ -1,7 +1,6 @@
 export class ParsingClass {
     parse(carName) {
-        return carName.split(','); // 쉼표를 기준으로 자동차 이름을 구분하여 배열에 저장
-
+        return carName.split(',').map(name => ({name, distance: 0})); // 문자열을 쉼표를 기준으로 나누어 배열로 만들고 배열 안 요소를 name으로 잡고 거리를 적을 공간까지 매핑
     }
 }
 
