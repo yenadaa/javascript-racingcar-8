@@ -1,24 +1,25 @@
 export class ValidationError {
     carNameError(carName, nameDistance) {
-        if(carName === '') {
+        // trim()을 붙여야 공백만 들어있어도 공백이 삭제되어 아래 에러문이 뜸 
+        if(carName.trim() === '') {
             throw new Error('[ERROR] 자동차 이름이 없으므로 게임을 진행할 수 없습니다!');
         }
         if(nameDistance.length === 1){
             throw new Error('[ERROR] 자동차가 하나이므로 게임을 진행할 수 없습니다!');
         }
         const nameArr = nameDistance.map(car => car.name);
-        const set = new Set(nameArr);
-        if(nameArr.length != set.size) {
-            throw new Error('[ERROR] 이름이 중복돼 게임을 진행할 수 없습니다!');
-        }
         nameArr.forEach(name => {
             if(name.length > 5) {
                 throw new Error('[ERROR] 자동차 이름이 5자를 초과했습니다!');
             }
             if(name === '') {
-                throw new Error('[ERROR] 쉼표만 적으면 안 됩니다!')
+                throw new Error('[ERROR] 자동차 이름 사이에 빈 값이 들어가거나 혹은 잘못된 쉼표 입력이 존재합니다!')
             }
         });
+        const set = new Set(nameArr);
+        if(nameArr.length != set.size) {
+            throw new Error('[ERROR] 이름이 중복돼 게임을 진행할 수 없습니다!');
+        }
 
     }
     attemptCountError(attemptCount) {
