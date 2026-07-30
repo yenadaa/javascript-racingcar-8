@@ -1,7 +1,4 @@
 export class RacingClass {
-    constructor(attemptCount) {
-        this.attemptCount = attemptCount;
-    }
     randomNumber() {
         // 0~9 사이 무작위 값을 생성하여 반환
         const number = MissionUtils.Random.pickNumberInRange(0, 9);
@@ -21,7 +18,7 @@ export class RacingClass {
             }
         });
     }
-    race(nameDistance) {
+    race(nameDistance, attemptCount) {
         // 각 차수별 경기상황을 저장할 배열 생성
         let progress = [];
 
