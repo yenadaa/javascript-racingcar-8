@@ -23,7 +23,7 @@ export class RacingClass {
         let progress = [];
 
         // 시도횟수만큼 moveCar를 반복할 for문
-        for(let i = 0; i < this.attemptCount; i++) {
+        for(let i = 0; i < attemptCount; i++) {
             // moveCar - 경주 실행
             this.moveCar(nameDistance);
             // 경주가 끝난 후 그 회차의 경기상황이 저장돼있는 nameDistance배열을 progress라는 배열에 넣는다.
