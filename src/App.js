@@ -1,9 +1,9 @@
-import InputClass from "./InputView";
-import { ParsingClass } from "./Parsing";
-import { RacingClass } from "./RacingGame";
-import { WinnerClass } from "./Winner";
-import { OutputClass } from "./OutputView";
-import { ValidationError } from "./Validation";
+import InputClass from "./InputView.js";
+import { ParsingClass } from "./Parsing.js";
+import { RacingClass } from "./RacingGame.js";
+import { WinnerClass } from "./Winner.js";
+import { OutputClass } from "./OutputView.js";
+import { ValidationError } from "./Validation.js";
 
 class App {
   async run() {
