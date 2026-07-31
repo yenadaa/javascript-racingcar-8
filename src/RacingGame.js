@@ -1,7 +1,9 @@
+import { Random } from '@woowacourse/mission-utils';
+
 export class RacingClass {
     randomNumber() {
         // 0~9 사이 무작위 값을 생성하여 반환
-        const number = MissionUtils.Random.pickNumberInRange(0, 9);
+        const number = Random.pickNumberInRange(0, 9);
         return number;
     }
     goStop(number) {
@@ -27,7 +29,7 @@ export class RacingClass {
             // moveCar - 경주 실행
             this.moveCar(nameDistance);
             // 경주가 끝난 후 그 회차의 경기상황이 저장돼있는 nameDistance배열을 progress라는 배열에 넣는다.
-            progress.push([...nameDistance]);
+            progress.push(nameDistance.map(car => ({ ...car })));
         }
         
         // 각 차수별로 저장돼있는 실행결과 모음 배열 반환
