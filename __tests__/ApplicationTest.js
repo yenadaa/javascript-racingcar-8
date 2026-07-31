@@ -46,7 +46,67 @@ describe("자동차 경주", () => {
     });
   });
 
-  test("예외 테스트", async () => {
+  test("예외 테스트 - 유효한 이름 뒤에 쉼표 무더기 입력 (dfdf,,,,,,,)", async () => {
+    // given
+    const inputs = ["dfdf,,,,,,,"];
+    mockQuestions(inputs);
+
+    // when & then
+    const app = new App();
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("예외 테스트 - 이름 없이 공백과 쉼표만 연속 입력 (,,,)", async () => {
+    // given
+    const inputs = [",,,"];
+    mockQuestions(inputs);
+
+    // when & then
+    const app = new App();
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("예외 테스트 - 이름 자리에 스페이스 공백만 입력한 경우", async () => {
+    // given
+    const inputs = ["pobi,   ,woni"];
+    mockQuestions(inputs);
+
+    // when & then
+    const app = new App();
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("예외 테스트 - 시도 횟수에 숫자가 아닌 문자를 입력한 경우", async () => {
+    // given
+    const inputs = ["pobi,woni", "two"];
+    mockQuestions(inputs);
+
+    // when & then
+    const app = new App();
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("예외 테스트 - 시도 횟수에 음수나 0을 입력한 경우", async () => {
+    // given
+    const inputs = ["pobi,woni", "0"];
+    mockQuestions(inputs);
+
+    // when & then
+    const app = new App();
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("예외 테스트 - 시도 횟수에 소수점을 입력한 경우", async () => {
+    // given
+    const inputs = ["pobi,woni", "2.5"];
+    mockQuestions(inputs);
+
+    // when & then
+    const app = new App();
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("예외 테스트 - 이름 5자 초과한 경우", async () => {
     // given
     const inputs = ["pobi,javaji"];
     mockQuestions(inputs);
